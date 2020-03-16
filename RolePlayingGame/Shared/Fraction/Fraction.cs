@@ -1,13 +1,13 @@
-﻿namespace RolePlayingGame.Shared.Fraction
+﻿namespace RolePlayingGame.Shared
 {
 	using System;
 	using System.Globalization;
 
 	public struct Fraction : IComparable, IConvertible, IFormattable, IComparable<Fraction>, IEquatable<Fraction>
 	{
-		private readonly bool sign;
-		private readonly ulong numerator;
-		private readonly ulong denominator;
+		public readonly bool sign;
+		public readonly ulong numerator;
+		public readonly ulong denominator;
 
 		public Fraction(byte b) : this(Convert.ToDecimal(b))
 		{
@@ -162,17 +162,17 @@
 		public static implicit operator Fraction(float value) => new Fraction(value);
 		public static implicit operator Fraction(double value) => new Fraction(value);
 		public static implicit operator Fraction(decimal value) => new Fraction(value);
-		public static explicit operator byte(Fraction value) => Convert.ToByte(value);
-		public static explicit operator sbyte(Fraction value) => Convert.ToSByte(value);
-		public static explicit operator ushort(Fraction value) => Convert.ToUInt16(value);
-		public static explicit operator short(Fraction value) => Convert.ToInt16(value);
-		public static explicit operator uint(Fraction value) => Convert.ToUInt32(value);
-		public static explicit operator int(Fraction value) => Convert.ToInt32(value);
-		public static explicit operator ulong(Fraction value) => Convert.ToUInt64(value);
-		public static explicit operator long(Fraction value) => Convert.ToInt64(value);
-		public static explicit operator float(Fraction value) => Convert.ToSingle(value);
-		public static explicit operator double(Fraction value) => Convert.ToDouble(value);
-		public static explicit operator decimal(Fraction value) => Convert.ToDecimal(value);
+		public static implicit operator byte(Fraction value) => Convert.ToByte(value);
+		public static implicit operator sbyte(Fraction value) => Convert.ToSByte(value);
+		public static implicit operator ushort(Fraction value) => Convert.ToUInt16(value);
+		public static implicit operator short(Fraction value) => Convert.ToInt16(value);
+		public static implicit operator uint(Fraction value) => Convert.ToUInt32(value);
+		public static implicit operator int(Fraction value) => Convert.ToInt32(value);
+		public static implicit operator ulong(Fraction value) => Convert.ToUInt64(value);
+		public static implicit operator long(Fraction value) => Convert.ToInt64(value);
+		public static implicit operator float(Fraction value) => Convert.ToSingle(value);
+		public static implicit operator double(Fraction value) => Convert.ToDouble(value);
+		public static implicit operator decimal(Fraction value) => Convert.ToDecimal(value);
 
 		public static bool operator <(Fraction left, Fraction right) => left.CompareTo(right) < 0;
 		public static bool operator >(Fraction left, Fraction right) => left.CompareTo(right) > 0;
