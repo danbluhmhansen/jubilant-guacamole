@@ -9,16 +9,28 @@
 		private readonly ulong numerator;
 		private readonly ulong denominator;
 
-		public Fraction(decimal d)
+		public Fraction(byte b) : this(Convert.ToDecimal(b))
 		{
-			sign = d < 0;
+		}
 
-			denominator = Convert.ToUInt64(Math.Pow(10, BitConverter.GetBytes(decimal.GetBits(d)[3])[2]));
-			numerator = decimal.ToUInt64(Math.Abs(Math.Truncate(d * denominator)));
+		public Fraction(sbyte b) : this(Convert.ToDecimal(b))
+		{
+		}
 
-			var greatestCommonDivisor = GreatestCommonDivisor(numerator, denominator);
-			numerator /= greatestCommonDivisor;
-			denominator /= greatestCommonDivisor;
+		public Fraction(ushort numerator, ulong denominator) : this(Convert.ToUInt64(numerator), denominator)
+		{
+		}
+
+		public Fraction(short numerator, ulong denominator) : this(Convert.ToUInt64(numerator), denominator)
+		{
+		}
+
+		public Fraction(uint numerator, ulong denominator) : this(Convert.ToUInt64(numerator), denominator)
+		{
+		}
+
+		public Fraction(int numerator, ulong denominator) : this(Convert.ToUInt64(numerator), denominator)
+		{
 		}
 
 		public Fraction(ulong numerator, ulong denominator)
@@ -38,11 +50,27 @@
 			this.denominator = denominator / greatestCommonDivisor;
 		}
 
-		public Fraction(byte b) : this(Convert.ToDecimal(b))
+		public Fraction(ushort numerator) : this(numerator, 1)
 		{
 		}
 
-		public Fraction(sbyte b) : this(Convert.ToDecimal(b))
+		public Fraction(short numerator) : this(numerator, 1)
+		{
+		}
+
+		public Fraction(uint numerator) : this(numerator, 1)
+		{
+		}
+
+		public Fraction(int numerator) : this(numerator, 1)
+		{
+		}
+
+		public Fraction(ulong numerator) : this(numerator, 1)
+		{
+		}
+
+		public Fraction(long numerator) : this(numerator, 1)
 		{
 		}
 
@@ -54,44 +82,16 @@
 		{
 		}
 
-		public Fraction(uint numerator, ulong denominator) : this(Convert.ToUInt64(numerator), denominator)
+		public Fraction(decimal d)
 		{
-		}
+			sign = d < 0;
 
-		public Fraction(int numerator, ulong denominator) : this(Convert.ToUInt64(numerator), denominator)
-		{
-		}
+			denominator = Convert.ToUInt64(Math.Pow(10, BitConverter.GetBytes(decimal.GetBits(d)[3])[2]));
+			numerator = decimal.ToUInt64(Math.Abs(Math.Truncate(d * denominator)));
 
-		public Fraction(ushort numerator, ulong denominator) : this(Convert.ToUInt64(numerator), denominator)
-		{
-		}
-
-		public Fraction(short numerator, ulong denominator) : this(Convert.ToUInt64(numerator), denominator)
-		{
-		}
-
-		public Fraction(ushort numerator) : this(numerator, 1)
-		{
-		}
-
-		public Fraction(uint numerator) : this(numerator, 1)
-		{
-		}
-
-		public Fraction(ulong numerator) : this(numerator, 1)
-		{
-		}
-
-		public Fraction(short numerator) : this(numerator, 1)
-		{
-		}
-
-		public Fraction(int numerator) : this(numerator, 1)
-		{
-		}
-
-		public Fraction(long numerator) : this(numerator, 1)
-		{
+			var greatestCommonDivisor = GreatestCommonDivisor(numerator, denominator);
+			numerator /= greatestCommonDivisor;
+			denominator /= greatestCommonDivisor;
 		}
 
 		private static ulong GreatestCommonDivisor(ulong left, ulong right)
@@ -129,7 +129,7 @@
 			{
 				"G" => $"{(sign ? "-" : string.Empty)}{numerator.ToString(formatProvider)}/{denominator.ToString(formatProvider)}",
 				"F" => $"{(sign ? "-" : string.Empty)}{numerator.ToString(formatProvider)}/{denominator.ToString(formatProvider)}",
-				"D" => "",
+				"D" => $"{(sign ? "-" : string.Empty)}{ToDecimal(formatProvider)}",
 				_ => throw new FormatException($"The {format} format string is not supported."),
 			};
 		}
@@ -152,44 +152,27 @@
 		public ulong ToUInt64(IFormatProvider provider) => Convert.ToUInt64(this);
 
 		public static implicit operator Fraction(byte value) => new Fraction(value);
-
 		public static implicit operator Fraction(sbyte value) => new Fraction(value);
-
-		public static implicit operator Fraction(short value) => new Fraction(value);
-
 		public static implicit operator Fraction(ushort value) => new Fraction(value);
-
-		public static implicit operator Fraction(int value) => new Fraction(value);
-
+		public static implicit operator Fraction(short value) => new Fraction(value);
 		public static implicit operator Fraction(uint value) => new Fraction(value);
-
-		public static implicit operator Fraction(long value) => new Fraction(value);
-
+		public static implicit operator Fraction(int value) => new Fraction(value);
 		public static implicit operator Fraction(ulong value) => new Fraction(value);
-
+		public static implicit operator Fraction(long value) => new Fraction(value);
 		public static implicit operator Fraction(float value) => new Fraction(value);
-
 		public static implicit operator Fraction(double value) => new Fraction(value);
-
 		public static implicit operator Fraction(decimal value) => new Fraction(value);
-
 		public static explicit operator byte(Fraction value) => Convert.ToByte(value);
-
-		public static explicit operator short(Fraction value) => Convert.ToInt16(value);
-
+		public static explicit operator sbyte(Fraction value) => Convert.ToSByte(value);
 		public static explicit operator ushort(Fraction value) => Convert.ToUInt16(value);
-
-		public static explicit operator int(Fraction value) => Convert.ToInt32(value);
-
+		public static explicit operator short(Fraction value) => Convert.ToInt16(value);
 		public static explicit operator uint(Fraction value) => Convert.ToUInt32(value);
-
-		public static explicit operator long(Fraction value) => Convert.ToInt64(value);
-
+		public static explicit operator int(Fraction value) => Convert.ToInt32(value);
 		public static explicit operator ulong(Fraction value) => Convert.ToUInt64(value);
-
+		public static explicit operator long(Fraction value) => Convert.ToInt64(value);
 		public static explicit operator float(Fraction value) => Convert.ToSingle(value);
-
 		public static explicit operator double(Fraction value) => Convert.ToDouble(value);
+		public static explicit operator decimal(Fraction value) => Convert.ToDecimal(value);
 
 		public static bool operator <(Fraction left, Fraction right) => left.CompareTo(right) < 0;
 		public static bool operator >(Fraction left, Fraction right) => left.CompareTo(right) > 0;
