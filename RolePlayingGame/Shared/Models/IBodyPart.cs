@@ -2,7 +2,12 @@
 {
 	public interface IBodyPart
 	{
-		BodyPartStatus Status { get; }
+		BodyPartStatus Status { get; protected set; }
 		int Size { get; }
+
+		void Damage()
+		{
+			Status += 1;
+		}
 	}
 }

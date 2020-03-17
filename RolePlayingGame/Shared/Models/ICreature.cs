@@ -17,11 +17,13 @@
 		{
 			var total = 0;
 			var random = new Random().Next(0, Size);
-			var bodyPart = this.BodyParts
+			var bodyPart = BodyParts
 				.OrderBy(bp => bp.Size)
 				.Select(bp => (BodyPart: bp, Chance: total += bp.Size))
-				.FirstOrDefault(x => random < x.Chance)
+				.First(x => random < x.Chance)
 				.BodyPart;
+
+			bodyPart.Damage();
 		}
 	}
 }
