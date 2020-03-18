@@ -1,6 +1,5 @@
 ﻿namespace RolePlayingGame.Shared.Models
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 
@@ -8,6 +7,8 @@
 
 	public interface ICreature
 	{
+		int Defence { get; }
+
 		IEnumerable<IBodyPart> BodyParts { get; }
 		int Size { get => BodyParts.Sum(bodyPart => bodyPart.Size); }
 
@@ -15,15 +16,19 @@
 
 		void Defend(IAttack attack)
 		{
+			var hitChance = RandomExtensions.Random.Next(attack.Attack);
+			if (hitChance < Defence)
+				return;
+
 			var total = 0;
-			var random = new Random().Next(0, Size);
+			var bodyPartChance = RandomExtensions.Random.Next(BodyParts.Where(bodyPart => bodyPart.Status != BodyPartStatus.Destroyed).Sum(bodyPart => bodyPart.Size));
 			var bodyPart = BodyParts
+				.Where(bodyPart => bodyPart.Status != BodyPartStatus.Destroyed)
 				.OrderBy(bp => bp.Size)
 				.Select(bp => (BodyPart: bp, Chance: total += bp.Size))
-				.First(x => random < x.Chance)
+				.First(x => bodyPartChance < x.Chance)
 				.BodyPart;
-
-			bodyPart.Damage();
+			bodyPart.Damage(attack);
 		}
 	}
 }

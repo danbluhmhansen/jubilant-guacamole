@@ -4,10 +4,15 @@
 	{
 		BodyPartStatus Status { get; protected set; }
 		int Size { get; }
+		int Toughness { get; }
 
-		void Damage()
+		void Damage(IAttack attack)
 		{
-			Status += 1;
+			var damageChance = RandomExtensions.Random.Next(attack.Damage);
+			if (damageChance < Toughness)
+				return;
+
+			Status++;
 		}
 	}
 }
