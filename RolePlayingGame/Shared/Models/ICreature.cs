@@ -14,11 +14,11 @@
 
 		IAttack Attack();
 
-		void Defend(IAttack attack)
+		IBodyPart Defend(IAttack attack)
 		{
 			var hitChance = RandomExtensions.Random.Next(attack.Attack);
 			if (hitChance < Defence)
-				return;
+				return null;
 
 			var total = 0;
 			var bodyPartChance = RandomExtensions.Random.Next(BodyParts.Where(bodyPart => bodyPart.Status != BodyPartStatus.Destroyed).Sum(bodyPart => bodyPart.Size));
@@ -29,6 +29,7 @@
 				.First(x => bodyPartChance < x.Chance)
 				.BodyPart;
 			bodyPart.Damage(attack);
+			return bodyPart;
 		}
 	}
 }
