@@ -2,5 +2,6 @@
 {
 	public interface IEquipment
 	{
+		bool IsWearable { get; }
 	}
 }

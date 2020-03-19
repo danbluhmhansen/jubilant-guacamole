@@ -9,15 +9,40 @@
 
 	public abstract class BaseCreature : ICreature
 	{
-		protected BaseCreature(int defence, IEnumerable<IBodyPart> bodyParts)
+		protected BaseCreature(int vigor, int mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts, IEnumerable<IEquipment> equipment)
 		{
-			this.Defence = defence;
-			this.BodyParts = bodyParts;
+			BaseVigor = vigor;
+			MaxVigor = vigor;
+			Vigor = vigor;
+
+			BaseMana = mana;
+			MaxMana = mana;
+			Mana = mana;
+
+			Temperature = temperature;
+
+			Defence = defence;
+
+			BodyParts = bodyParts;
+			Equipment = (ICollection<IEquipment>)equipment;
 		}
 
+		public int BaseVigor { get; }
+		public int BaseMana { get; }
+
+		public int MaxVigor { get; }
+		public int MaxMana { get; }
+
+		public int Vigor { get; }
+		public int Mana { get; }
+		public int Temperature { get; }
+
 		public int Defence { get; }
-		public IEnumerable<IBodyPart> BodyParts { get; }
+
 		public virtual int Size => BodyParts.Sum(bodyPart => bodyPart.Size);
+
+		public IEnumerable<IBodyPart> BodyParts { get; }
+		public ICollection<IEquipment> Equipment { get; }
 
 		public abstract IAttack Attack();
 		public IBodyPart? Defend(IAttack attack)

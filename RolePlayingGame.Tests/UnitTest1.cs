@@ -17,23 +17,30 @@ namespace RolePlayingGame.Tests
 			new TestCaseData
 			(
 				6554,
-				new Human(500),
-				new Attack(1000, 1000)
+				new Human(),
+				new Attack(1000, 1000),
+				new BodyPart("Body", 160, 500, BodyPartStatus.Impaired)
+			),
+			new TestCaseData
+			(
+				9663,
+				new Human(),
+				new Attack(1000, 1000),
+				new BodyPart("Left arm", 80, 500, BodyPartStatus.Normal)
 			),
 		};
 
 		[TestCaseSource(nameof(Data))]
-		public void Test1(int seed, ICreature creature, IAttack attack)
+		public void Test1(int seed, ICreature creature, IAttack attack, IBodyPart expected)
 		{
 			// Arrange
 			RandomExtensions.Initialise(seed);
 
 			// Act
-			var bodyPart = creature.Defend(attack)!;
+			var actual = creature.Defend(attack)!;
 
 			// Assert
-			bodyPart.Name.Should().Be("Body");
-			bodyPart.Status.Should().Be(BodyPartStatus.Impaired);
+			actual.Should().BeEquivalentTo(expected);
 		}
 	}
 }
