@@ -2,17 +2,11 @@
 {
 	public interface IBodyPart
 	{
-		BodyPartStatus Status { get; protected set; }
+		string Name { get; }
+		BodyPartStatus Status { get; }
 		int Size { get; }
 		int Toughness { get; }
 
-		void Damage(IAttack attack)
-		{
-			var damageChance = RandomExtensions.Random.Next(attack.Damage);
-			if (damageChance < Toughness)
-				return;
-
-			Status++;
-		}
+		void Damage(IAttack attack);
 	}
 }

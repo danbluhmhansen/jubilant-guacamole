@@ -1,48 +1,39 @@
 namespace RolePlayingGame.Tests
 {
-	using NSubstitute;
+	using System.Collections.Generic;
+
+	using FluentAssertions;
 
 	using NUnit.Framework;
 
+	using RolePlayingGame.Shared;
+	using RolePlayingGame.Shared.Creatures;
 	using RolePlayingGame.Shared.Models;
 
 	public class Tests
 	{
-		[Test]
-		public void Test1()
+		public static IEnumerable<TestCaseData> Data => new[]
+		{
+			new TestCaseData
+			(
+				6554,
+				new Human(500),
+				new Attack(1000, 1000)
+			),
+		};
+
+		[TestCaseSource(nameof(Data))]
+		public void Test1(int seed, ICreature creature, IAttack attack)
 		{
 			// Arrange
-			var attack = Substitute.For<IAttack>();
-			attack.Attack.Returns(1000);
-			attack.Damage.Returns(1000);
-
-			var head = Substitute.For<IBodyPart>();
-			var body = Substitute.For<IBodyPart>();
-			var leftArm = Substitute.For<IBodyPart>();
-			var rightArm = Substitute.For<IBodyPart>();
-			var leftLeg = Substitute.For<IBodyPart>();
-			var rightLeg = Substitute.For<IBodyPart>();
-
-			body.Size.Returns(160);
-			head.Size.Returns(60);
-			leftArm.Size.Returns(80);
-			rightArm.Size.Returns(80);
-			leftLeg.Size.Returns(100);
-			rightLeg.Size.Returns(100);
-
-			head.Toughness.Returns(500);
-			body.Toughness.Returns(500);
-			leftArm.Toughness.Returns(500);
-			rightArm.Toughness.Returns(500);
-			leftLeg.Toughness.Returns(500);
-			rightLeg.Toughness.Returns(500);
-
-			var creature = Substitute.For<ICreature>();
-			creature.Defence.Returns(500);
-			creature.BodyParts.Returns(new[] { head, body, leftArm, rightArm, leftLeg, rightLeg });
+			RandomExtensions.Initialise(seed);
 
 			// Act
-			var bodyPart = creature.Defend(attack);
+			var bodyPart = creature.Defend(attack)!;
+
+			// Assert
+			bodyPart.Name.Should().Be("Body");
+			bodyPart.Status.Should().Be(BodyPartStatus.Impaired);
 		}
 	}
 }
