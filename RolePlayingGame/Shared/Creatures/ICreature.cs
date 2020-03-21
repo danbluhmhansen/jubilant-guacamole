@@ -2,7 +2,9 @@
 {
 	using System.Collections.Generic;
 
-	using RolePlayingGame.Shared.Models;
+	using RolePlayingGame.Shared.Combat;
+	using RolePlayingGame.Shared.Equipment;
+	using RolePlayingGame.Shared.Health;
 
 	public interface ICreature
 	{
@@ -26,8 +28,8 @@
 
 		ICollection<IEquipment> Equipment { get; }
 
-		IAttack Attack();
+		IEnumerable<IAttack> Attacks ();
 
-		IBodyPart? Defend(IAttack attack);
+		IBodyPart? Defend (IAttack attack);
 	}
 }

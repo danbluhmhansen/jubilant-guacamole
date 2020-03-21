@@ -5,11 +5,13 @@
 
 	using MoreLinq;
 
-	using RolePlayingGame.Shared.Models;
+	using RolePlayingGame.Shared.Combat;
+	using RolePlayingGame.Shared.Equipment;
+	using RolePlayingGame.Shared.Health;
 
 	public abstract class BaseCreature : ICreature
 	{
-		protected BaseCreature(int vigor, int mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts, IEnumerable<IEquipment> equipment)
+		protected BaseCreature (int vigor, int mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts, IEnumerable<IEquipment> equipment)
 		{
 			BaseVigor = vigor;
 			MaxVigor = vigor;
@@ -24,7 +26,7 @@
 			Defence = defence;
 
 			BodyParts = bodyParts;
-			Equipment = (ICollection<IEquipment>)equipment;
+			Equipment = (ICollection<IEquipment>) equipment;
 		}
 
 		public int BaseVigor { get; }
@@ -39,27 +41,27 @@
 
 		public int Defence { get; }
 
-		public virtual int Size => BodyParts.Sum(bodyPart => bodyPart.Size);
+		public virtual int Size => BodyParts.Sum (bodyPart => bodyPart.Size);
 
 		public IEnumerable<IBodyPart> BodyParts { get; }
 		public ICollection<IEquipment> Equipment { get; }
 
-		public abstract IAttack Attack();
-		public IBodyPart? Defend(IAttack attack)
+		public virtual IEnumerable<IAttack> Attacks () => Enumerable.Empty<IAttack> ();
+		public virtual IBodyPart? Defend (IAttack attack)
 		{
-			var hitChance = RandomExtensions.Random.Next(attack.Attack);
+			var hitChance = RandomExtensions.Random.Next (attack.Attack);
 			if (hitChance < Defence)
 				return default;
 
 			var total = 0;
-			var bodyPartChance = RandomExtensions.Random.Next(BodyParts.Where(bodyPart => bodyPart.Status != BodyPartStatus.Destroyed).Sum(bodyPart => bodyPart.Size));
+			var bodyPartChance = RandomExtensions.Random.Next (BodyParts.Where (bodyPart => bodyPart.Status != BodyPartStatus.Destroyed).Sum (bodyPart => bodyPart.Size));
 			var bodyPart = BodyParts
-				.Where(bodyPart => bodyPart.Status != BodyPartStatus.Destroyed)
-				.OrderBy(bp => bp.Size)
-				.Select(bp => (BodyPart: bp, Chance: total += bp.Size))
-				.First(x => bodyPartChance < x.Chance)
+				.Where (bodyPart => bodyPart.Status != BodyPartStatus.Destroyed)
+				.OrderBy (bp => bp.Size)
+				.Select (bp => (BodyPart: bp, Chance: total += bp.Size))
+				.First (x => bodyPartChance < x.Chance)
 				.BodyPart;
-			bodyPart.Damage(attack);
+			bodyPart.Damage (attack);
 			return bodyPart;
 		}
 	}

@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolePlayingGame.Server", "RolePlayingGame\Server\RolePlayingGame.Server.csproj", "{4856339B-A6ED-4DD6-9CBD-EA786F9C325D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolePlayingGame.Client", "RolePlayingGame\Client\RolePlayingGame.Client.csproj", "{619E4CF7-7F49-476A-928A-A1E0D1491797}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolePlayingGame.Shared", "RolePlayingGame\Shared\RolePlayingGame.Shared.csproj", "{E8F0C38A-0CA9-446F-9A9F-C6D44B1628F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RolePlayingGame.Tests", "RolePlayingGame.Tests\RolePlayingGame.Tests.csproj", "{6E0BF178-CBF2-4D21-9FF0-7B2D426015AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Tests", "Tests\Shared\Shared.Tests.csproj", "{6E0BF178-CBF2-4D21-9FF0-7B2D426015AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4856339B-A6ED-4DD6-9CBD-EA786F9C325D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4856339B-A6ED-4DD6-9CBD-EA786F9C325D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4856339B-A6ED-4DD6-9CBD-EA786F9C325D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4856339B-A6ED-4DD6-9CBD-EA786F9C325D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{619E4CF7-7F49-476A-928A-A1E0D1491797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{619E4CF7-7F49-476A-928A-A1E0D1491797}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{619E4CF7-7F49-476A-928A-A1E0D1491797}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{619E4CF7-7F49-476A-928A-A1E0D1491797}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E8F0C38A-0CA9-446F-9A9F-C6D44B1628F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E8F0C38A-0CA9-446F-9A9F-C6D44B1628F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8F0C38A-0CA9-446F-9A9F-C6D44B1628F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
