@@ -11,57 +11,56 @@
 
 	public abstract class BaseCreature : ICreature
 	{
-		protected BaseCreature (int vigor, int mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts, IEnumerable<IEquipment> equipment)
+		protected BaseCreature(int vigour, int mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts)
 		{
-			BaseVigor = vigor;
-			MaxVigor = vigor;
-			Vigor = vigor;
+			this.BaseVigour = vigour;
+			this.MaxVigour = vigour;
+			this.Vigour = vigour;
 
-			BaseMana = mana;
-			MaxMana = mana;
-			Mana = mana;
+			this.BaseMana = mana;
+			this.MaxMana = mana;
+			this.Mana = mana;
 
-			Temperature = temperature;
+			this.Temperature = temperature;
 
-			Defence = defence;
+			this.Defence = defence;
 
-			BodyParts = bodyParts;
-			Equipment = (ICollection<IEquipment>) equipment;
+			this.BodyParts = bodyParts;
 		}
 
-		public int BaseVigor { get; }
+		public int BaseVigour { get; }
 		public int BaseMana { get; }
 
-		public int MaxVigor { get; }
+		public int MaxVigour { get; }
 		public int MaxMana { get; }
 
-		public int Vigor { get; }
+		public int Vigour { get; }
 		public int Mana { get; }
 		public int Temperature { get; }
 
 		public int Defence { get; }
 
-		public virtual int Size => BodyParts.Sum (bodyPart => bodyPart.Size);
+		public virtual int Size => this.BodyParts.Sum(bodyPart => bodyPart.Size);
 
 		public IEnumerable<IBodyPart> BodyParts { get; }
-		public ICollection<IEquipment> Equipment { get; }
+		public List<IEquipment> Equipment { get; } = new List<IEquipment>();
 
-		public virtual IEnumerable<IAttack> Attacks () => Enumerable.Empty<IAttack> ();
-		public virtual IBodyPart? Defend (IAttack attack)
+		public virtual IEnumerable<IAttack> Attacks() => Enumerable.Empty<IAttack>();
+		public virtual IBodyPart? Defend(IAttack attack)
 		{
-			var hitChance = RandomExtensions.Random.Next (attack.Attack);
-			if (hitChance < Defence)
+			var hitChance = RandomExtensions.Random.Next(attack.Attack);
+			if (hitChance < this.Defence)
 				return default;
 
 			var total = 0;
-			var bodyPartChance = RandomExtensions.Random.Next (BodyParts.Where (bodyPart => bodyPart.Status != BodyPartStatus.Destroyed).Sum (bodyPart => bodyPart.Size));
-			var bodyPart = BodyParts
-				.Where (bodyPart => bodyPart.Status != BodyPartStatus.Destroyed)
-				.OrderBy (bp => bp.Size)
-				.Select (bp => (BodyPart: bp, Chance: total += bp.Size))
-				.First (x => bodyPartChance < x.Chance)
+			var bodyPartChance = RandomExtensions.Random.Next(this.BodyParts.Where(bodyPart => bodyPart.Status != BodyPartStatus.Destroyed).Sum(bodyPart => bodyPart.Size));
+			var bodyPart = this.BodyParts
+				.Where(bodyPart => bodyPart.Status != BodyPartStatus.Destroyed)
+				.OrderBy(bp => bp.Size)
+				.Select(bp => (BodyPart: bp, Chance: total += bp.Size))
+				.First(x => bodyPartChance < x.Chance)
 				.BodyPart;
-			bodyPart.Damage (attack);
+			bodyPart.Damage(attack);
 			return bodyPart;
 		}
 	}

@@ -2,10 +2,10 @@
 {
 	public abstract class BaseAttack : IAttack
 	{
-		protected BaseAttack (int attack, int damage)
+		protected BaseAttack(int attack, int damage)
 		{
-			Attack = attack;
-			Damage = damage;
+			this.Attack = attack;
+			this.Damage = damage;
 		}
 
 		public int Attack { get; }

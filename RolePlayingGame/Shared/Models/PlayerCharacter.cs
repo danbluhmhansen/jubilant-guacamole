@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-
-using RolePlayingGame.Shared.Health;
-
-namespace RolePlayingGame.Shared.Models
+﻿namespace RolePlayingGame.Shared.Models
 {
 	public class PlayerCharacter
 	{

@@ -4,12 +4,12 @@
 
 	public abstract class BaseBodyPart : IBodyPart
 	{
-		protected BaseBodyPart (string name, int size, int toughness, BodyPartStatus status = default)
+		protected BaseBodyPart(string name, int size, int toughness, BodyPartStatus status = default)
 		{
-			Name = name;
-			Size = size;
-			Toughness = toughness;
-			Status = status;
+			this.Name = name;
+			this.Size = size;
+			this.Toughness = toughness;
+			this.Status = status;
 		}
 
 		public string Name { get; }
@@ -17,13 +17,13 @@
 		public int Size { get; }
 		public int Toughness { get; }
 
-		public void Damage (IAttack attack)
+		public void Damage(IAttack attack)
 		{
-			var damageChance = RandomExtensions.Random.Next (attack.Damage);
-			if (damageChance < Toughness)
+			var damageChance = RandomExtensions.Random.Next(attack.Damage);
+			if (damageChance < this.Toughness)
 				return;
 
-			Status++;
+			this.Status++;
 		}
 	}
 }

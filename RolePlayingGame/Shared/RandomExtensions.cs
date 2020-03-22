@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace RolePlayingGame.Shared
+﻿namespace RolePlayingGame.Shared
 {
+	using System;
+
 	public static class RandomExtensions
 	{
 		private static Random? random;

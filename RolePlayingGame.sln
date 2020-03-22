@@ -5,7 +5,14 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RolePlayingGame.Shared", "RolePlayingGame\Shared\RolePlayingGame.Shared.csproj", "{E8F0C38A-0CA9-446F-9A9F-C6D44B1628F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Tests", "Tests\Shared\Shared.Tests.csproj", "{6E0BF178-CBF2-4D21-9FF0-7B2D426015AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Tests", "Tests\Shared\Shared.Tests.csproj", "{6E0BF178-CBF2-4D21-9FF0-7B2D426015AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E66466FA-9ABE-4ED9-9052-A3C24B239BAA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

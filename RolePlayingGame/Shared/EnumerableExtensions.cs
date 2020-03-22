@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace RolePlayingGame.Shared
+﻿namespace RolePlayingGame.Shared
 {
+	using System.Collections.Generic;
+	using System.Linq;
+
 	public static class EnumerableExtensions
 	{
 		public static IEnumerable<T> Yield<T>(this T obj)

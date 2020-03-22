@@ -1,7 +1,7 @@
-﻿using RolePlayingGame.Shared.Combat;
-
-namespace RolePlayingGame.Shared.Health
+﻿namespace RolePlayingGame.Shared.Health
 {
+	using RolePlayingGame.Shared.Combat;
+
 	public interface IBodyPart
 	{
 		string Name { get; }
@@ -9,6 +9,6 @@ namespace RolePlayingGame.Shared.Health
 		int Size { get; }
 		int Toughness { get; }
 
-		void Damage (IAttack attack);
+		void Damage(IAttack attack);
 	}
 }

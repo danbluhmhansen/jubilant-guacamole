@@ -9,15 +9,15 @@
 	public interface ICreature
 	{
 		// Base resources
-		int BaseVigor { get; }
+		int BaseVigour { get; }
 		int BaseMana { get; }
 
 		// Max resources
-		int MaxVigor { get; }
+		int MaxVigour { get; }
 		int MaxMana { get; }
 
 		// Current resources
-		int Vigor { get; }
+		int Vigour { get; }
 		int Mana { get; }
 		int Temperature { get; }
 
@@ -26,10 +26,10 @@
 		IEnumerable<IBodyPart> BodyParts { get; }
 		int Size { get; }
 
-		ICollection<IEquipment> Equipment { get; }
+		List<IEquipment> Equipment { get; }
 
-		IEnumerable<IAttack> Attacks ();
+		IEnumerable<IAttack> Attacks();
 
-		IBodyPart? Defend (IAttack attack);
+		IBodyPart? Defend(IAttack attack);
 	}
 }
