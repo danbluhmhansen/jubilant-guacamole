@@ -18,9 +18,7 @@
 				new BodyPart("Right arm", 80, 500),
 				new BodyPart("Left leg", 100, 500),
 				new BodyPart("Right leg", 100, 500)))
-		{
-
-		}
+		{ }
 
 		public Human(IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts) : base(vigour, mana, temperature, defence, bodyParts) { }
 	}

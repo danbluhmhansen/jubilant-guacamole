@@ -1,16 +1,9 @@
 ﻿namespace RolePlayingGame.Shared.Resources
 {
-	public class Mana : IResource
+	public class Mana : BaseResource
 	{
-		public Mana(int mana)
+		public Mana(int resource) : base(resource)
 		{
-			this.Base = mana;
-			this.Current = mana;
-			this.Max = mana;
 		}
-
-		public int Base { get; }
-		public int Current { get; }
-		public int Max { get; }
 	}
 }

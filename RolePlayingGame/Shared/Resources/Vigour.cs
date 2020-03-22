@@ -1,16 +1,9 @@
 ﻿namespace RolePlayingGame.Shared.Resources
 {
-	public class Vigour : IResource
+	public class Vigour : BaseResource
 	{
-		public Vigour(int vigour)
+		public Vigour(int resource) : base(resource)
 		{
-			this.Base = vigour;
-			this.Current = vigour;
-			this.Max = vigour;
 		}
-
-		public int Base { get; }
-		public int Current { get; }
-		public int Max { get; }
 	}
 }
