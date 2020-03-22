@@ -17,13 +17,16 @@
 		public int Size { get; }
 		public int Toughness { get; }
 
-		public void Damage(IAttack attack)
+		public IBodyPart Damage(IAttack attack)
 		{
 			var damageChance = RandomExtensions.Random.Next(attack.Damage);
 			if (damageChance < this.Toughness)
-				return;
+				return this;
 
-			this.Status++;
+			if (this.Status != BodyPartStatus.Destroyed)
+				this.Status++;
+
+			return this;
 		}
 	}
 }

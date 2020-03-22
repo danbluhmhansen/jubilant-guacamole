@@ -5,20 +5,13 @@
 	using RolePlayingGame.Shared.Combat;
 	using RolePlayingGame.Shared.Equipment;
 	using RolePlayingGame.Shared.Health;
+	using RolePlayingGame.Shared.Resources;
 
 	public interface ICreature
 	{
-		// Base resources
-		int BaseVigour { get; }
-		int BaseMana { get; }
+		IResource Vigour { get; }
+		IResource Mana { get; }
 
-		// Max resources
-		int MaxVigour { get; }
-		int MaxMana { get; }
-
-		// Current resources
-		int Vigour { get; }
-		int Mana { get; }
 		int Temperature { get; }
 
 		int Defence { get; }

@@ -9,6 +9,6 @@
 		int Size { get; }
 		int Toughness { get; }
 
-		void Damage(IAttack attack);
+		IBodyPart Damage(IAttack attack);
 	}
 }
