@@ -2,7 +2,7 @@
 {
 	public enum AppendageType
 	{
-		Body,
+		Torso,
 		Head,
 		Arm,
 		Leg,

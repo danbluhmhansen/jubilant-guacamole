@@ -14,7 +14,7 @@ namespace RolePlayingGame.Tests
 	public class Combat
 	{
 		private static readonly ICreature testHuman = new Human();
-		private static readonly IAttack testAttack = new Attack("Test", 1000, 1000);
+		private static readonly IAttack testAttack = new Attack("Test", 1000, 1000, AppendageType.Arm.Yield());
 
 		/// <summary><see cref="Defend(int, ICreature, IAttack, IAppendage?)"/>.</summary>
 		public static IEnumerable<TestCaseData> Data => new[]

@@ -14,7 +14,7 @@
 			500,
 			500,
 			new Appendage("Head", AppendageType.Head, 60, 500).Yield(
-				new Appendage("Body", AppendageType.Body, 160, 500),
+				new Appendage("Body", AppendageType.Torso, 160, 500),
 				new Appendage("Left arm", AppendageType.Arm, 80, 500),
 				new Appendage("Right arm", AppendageType.Arm, 80, 500),
 				new Appendage("Left leg", AppendageType.Leg, 100, 500),
