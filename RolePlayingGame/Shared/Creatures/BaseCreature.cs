@@ -12,16 +12,15 @@
 
 	public abstract class BaseCreature : ICreature
 	{
-		protected BaseCreature(IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts, IEnumerable<IAttack> attacks)
+		protected BaseCreature(IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages, IEnumerable<IAttack> attacks)
 		{
 			this.Vigour = vigour;
 			this.Mana = mana;
 			this.Temperature = temperature;
 			this.Defence = defence;
-			this.BodyParts = bodyParts;
+			this.Appendages = appendages;
 
-			this.attacks = new List<IAttack>();
-			this.attacks.AddRange(attacks);
+			this.attacks = attacks.ToList();
 		}
 
 		private readonly List<IAttack> attacks;
@@ -34,25 +33,25 @@
 
 		public int Defence { get; }
 
-		public virtual int Size => this.BodyParts.Sum(bodyPart => bodyPart.Size);
+		public virtual int Size => this.Appendages.Sum(appendage => appendage.Size);
 
-		public IEnumerable<IBodyPart> BodyParts { get; }
+		public IEnumerable<IAppendage> Appendages { get; }
 
 		public List<IEquipment> Equipment { get; } = new List<IEquipment>();
 
 		public virtual IEnumerable<IAttack> Attacks() => this.attacks;
 
-		public virtual IBodyPart? Defend(IAttack attack)
+		public virtual IAppendage? Defend(IAttack attack)
 		{
 			if (this.Defence.Roll(attack.Attack))
 				return default;
 
 			var total = 0;
-			return this.BodyParts
-				.OrderBy(bodyPart => bodyPart.Size)
-				.Select(bodyPart => (BodyPart: bodyPart, TargetNumber: total += bodyPart.Size))
-				.First(bodyPartWithTargetNumber => bodyPartWithTargetNumber.TargetNumber.Roll(this.Size))
-				.BodyPart
+			return this.Appendages
+				.OrderBy(appendage => appendage.Size)
+				.Select(appendage => (Appendage: appendage, TargetNumber: total += appendage.Size))
+				.First(appendageWithTargetNumber => appendageWithTargetNumber.TargetNumber.Roll(this.Size))
+				.Appendage
 				.Damage(attack);
 		}
 	}

@@ -13,18 +13,18 @@
 			new Mana(500),
 			500,
 			500,
-			new BodyPart("Head", 60, 500).Yield(
-				new BodyPart("Body", 160, 500),
-				new BodyPart("Left arm", 80, 500),
-				new BodyPart("Right arm", 80, 500),
-				new BodyPart("Left leg", 100, 500),
-				new BodyPart("Right leg", 100, 500)),
+			new Appendage("Head", AppendageType.Head, 60, 500).Yield(
+				new Appendage("Body", AppendageType.Body, 160, 500),
+				new Appendage("Left arm", AppendageType.Arm, 80, 500),
+				new Appendage("Right arm", AppendageType.Arm, 80, 500),
+				new Appendage("Left leg", AppendageType.Leg, 100, 500),
+				new Appendage("Right leg", AppendageType.Leg, 100, 500)),
 			new StandardMeleeAttack().Yield())
 		{ }
 
 		public Human(
-			IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts,
+			IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages,
 			IEnumerable<IAttack> attacks)
-			: base(vigour, mana, temperature, defence, bodyParts, attacks) { }
+			: base(vigour, mana, temperature, defence, appendages, attacks) { }
 	}
 }

@@ -16,13 +16,13 @@
 
 		int Defence { get; }
 
-		IEnumerable<IBodyPart> BodyParts { get; }
+		IEnumerable<IAppendage> Appendages { get; }
 		int Size { get; }
 
 		List<IEquipment> Equipment { get; }
 
 		IEnumerable<IAttack> Attacks();
 
-		IBodyPart? Defend(IAttack attack);
+		IAppendage? Defend(IAttack attack);
 	}
 }

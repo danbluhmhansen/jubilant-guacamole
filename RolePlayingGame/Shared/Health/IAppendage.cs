@@ -1,14 +1,19 @@
 ﻿namespace RolePlayingGame.Shared.Health
 {
+	using System.Collections.Generic;
+
 	using RolePlayingGame.Shared.Combat;
 
-	public interface IBodyPart
+	public interface IAppendage
 	{
 		string Name { get; }
+		AppendageType Type { get; }
 		BodyPartStatus Status { get; }
 		int Size { get; }
 		int Toughness { get; }
 
-		IBodyPart Damage(IAttack attack);
+		List<IInjury> Injuries { get; }
+
+		IAppendage Damage(IAttack attack);
 	}
 }
