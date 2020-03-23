@@ -28,6 +28,6 @@
 		/// <param name="minValue">The inclusive lower bound of the random number returned.</param>
 		/// <returns>The probability of rolling higher than the <paramref name="targetNumber"/>.</returns>
 		public static double Chance(this int targetNumber, int maxValue, int? minValue = default) =>
-			minValue > targetNumber ? 100 : maxValue < targetNumber ? 0 : Convert.ToDouble(targetNumber - (minValue ?? 0)) / maxValue * 100;
+			minValue > targetNumber ? 100 : maxValue < targetNumber ? 0 : (1 - Convert.ToDouble(targetNumber - (minValue ?? 0)) / maxValue) * 100;
 	}
 }

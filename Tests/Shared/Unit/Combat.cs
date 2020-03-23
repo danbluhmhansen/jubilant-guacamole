@@ -16,6 +16,7 @@ namespace RolePlayingGame.Tests
 		private static readonly ICreature testHuman = new Human();
 		private static readonly IAttack testAttack = new Attack("Test", 1000, 1000);
 
+		/// <summary><see cref="Defend(int, ICreature, IAttack, IBodyPart?)"/>.</summary>
 		public static IEnumerable<TestCaseData> Data => new[]
 		{
 			// No hit.
