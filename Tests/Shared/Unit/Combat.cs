@@ -16,11 +16,11 @@ namespace RolePlayingGame.Tests
 		public static IEnumerable<TestCaseData> Data => new[]
 		{
 			// No hit.
-			new TestCaseData(1337, new Human(), new Attack(1000, 1000), default(IBodyPart)),
+			new TestCaseData(1337, new Human(), new StandardMeleeAttack(), default(IBodyPart)),
 			// Hit 'Left arm' body part, but doesn't damage.
-			new TestCaseData(9663, new Human(), new Attack(1000, 1000), new BodyPart("Left arm", 80, 500, BodyPartStatus.Normal)),
+			new TestCaseData(9663, new Human(), new StandardMeleeAttack(), new BodyPart("Left arm", 80, 500, BodyPartStatus.Normal)),
 			// Hit and damage 'Head' body part.
-			new TestCaseData(6541, new Human(), new Attack(1000, 1000), new BodyPart("Head", 60, 500, BodyPartStatus.Impaired)),
+			new TestCaseData(6541, new Human(), new StandardMeleeAttack(), new BodyPart("Head", 60, 500, BodyPartStatus.Impaired)),
 		};
 
 		/// <summary>Testing <see cref="ICreature.Defend(IAttack)"/></summary>

@@ -12,14 +12,19 @@
 
 	public abstract class BaseCreature : ICreature
 	{
-		protected BaseCreature(IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts)
+		protected BaseCreature(IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts, IEnumerable<IAttack> attacks)
 		{
 			this.Vigour = vigour;
 			this.Mana = mana;
 			this.Temperature = temperature;
 			this.Defence = defence;
 			this.BodyParts = bodyParts;
+
+			this.attacks = new List<IAttack>();
+			this.attacks.AddRange(attacks);
 		}
+
+		private readonly List<IAttack> attacks;
 
 		public IResource Vigour { get; }
 
@@ -35,7 +40,7 @@
 
 		public List<IEquipment> Equipment { get; } = new List<IEquipment>();
 
-		public virtual IEnumerable<IAttack> Attacks() => Enumerable.Empty<IAttack>();
+		public virtual IEnumerable<IAttack> Attacks() => this.attacks;
 
 		public virtual IBodyPart? Defend(IAttack attack)
 		{

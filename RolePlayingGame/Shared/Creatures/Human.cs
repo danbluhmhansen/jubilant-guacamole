@@ -2,6 +2,7 @@
 {
 	using System.Collections.Generic;
 
+	using RolePlayingGame.Shared.Combat;
 	using RolePlayingGame.Shared.Health;
 	using RolePlayingGame.Shared.Resources;
 
@@ -17,9 +18,13 @@
 				new BodyPart("Left arm", 80, 500),
 				new BodyPart("Right arm", 80, 500),
 				new BodyPart("Left leg", 100, 500),
-				new BodyPart("Right leg", 100, 500)))
+				new BodyPart("Right leg", 100, 500)),
+			new StandardMeleeAttack().Yield())
 		{ }
 
-		public Human(IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts) : base(vigour, mana, temperature, defence, bodyParts) { }
+		public Human(
+			IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IBodyPart> bodyParts,
+			IEnumerable<IAttack> attacks)
+			: base(vigour, mana, temperature, defence, bodyParts, attacks) { }
 	}
 }

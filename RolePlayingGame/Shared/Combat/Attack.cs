@@ -2,6 +2,6 @@
 {
 	public class Attack : BaseAttack
 	{
-		public Attack(int attack, int damage) : base(attack, damage) { }
+		public Attack(string name, int attack, int damage) : base(name, attack, damage) { }
 	}
 }
