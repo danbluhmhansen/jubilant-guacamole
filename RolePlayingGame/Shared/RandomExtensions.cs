@@ -21,5 +21,13 @@
 		/// <returns>True if the random number exceeds the <paramref name="targetNumber"/>, otherwise false.</returns>
 		public static bool Roll(this int targetNumber, int? maxValue = default, int? minValue = default) =>
 			(minValue.HasValue && maxValue.HasValue ? Random.Next(minValue.Value, maxValue.Value) : maxValue.HasValue ? Random.Next(maxValue.Value) : Random.Next()) < targetNumber;
+
+		/// <summary>Calculates the probability of rolling higher than a <paramref name="targetNumber"/>.</summary>
+		/// <param name="targetNumber">The number to exceed.</param>
+		/// <param name="maxValue">The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.</param>
+		/// <param name="minValue">The inclusive lower bound of the random number returned.</param>
+		/// <returns>The probability of rolling higher than the <paramref name="targetNumber"/>.</returns>
+		public static double Chance(this int targetNumber, int maxValue, int? minValue = default) =>
+			minValue > targetNumber ? 100 : maxValue < targetNumber ? 0 : Convert.ToDouble(targetNumber - (minValue ?? 0)) / maxValue * 100;
 	}
 }
