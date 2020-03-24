@@ -1,12 +1,10 @@
 ﻿namespace RolePlayingGame.Shared.Combat
 {
-	using System.Collections.Generic;
-
 	using RolePlayingGame.Shared.Health;
 
 	public abstract class BaseAttack : IAttack
 	{
-		protected BaseAttack(string name, int attack, int damage, IEnumerable<AppendageType> appendages)
+		protected BaseAttack(string name, int attack, int damage, AppendageType appendages)
 		{
 			this.Name = name;
 			this.Attack = attack;
@@ -20,6 +18,6 @@
 
 		public int Damage { get; }
 
-		public IEnumerable<AppendageType> Appendages { get; }
+		public AppendageType Appendages { get; }
 	}
 }
