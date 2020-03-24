@@ -21,9 +21,9 @@ namespace RolePlayingGame.Tests
 		{
 			// No hit.
 			new TestCaseData(1337, testHuman, testAttack, default(IAppendage)),
-			// Hit 'Left arm' body part, but doesn't damage.
+			// Hit 'Left arm' appendage, but doesn't damage.
 			new TestCaseData(9663, testHuman, testAttack, new Appendage("Left arm", AppendageType.Arm, 80, 500, BodyPartStatus.Normal)),
-			// Hit and damage 'Head' body part.
+			// Hit and damage 'Head' appendage.
 			new TestCaseData(6541, testHuman, testAttack, new Appendage("Head", AppendageType.Head, 60, 500, BodyPartStatus.Impaired)),
 		};
 
@@ -31,7 +31,7 @@ namespace RolePlayingGame.Tests
 		/// <param name="seed">Specific seed for the randomiser.</param>
 		/// <param name="creature">The creature that will defend against the <paramref name="attack"/>.</param>
 		/// <param name="attack">The attack the <paramref name="creature"/> will defend against.</param>
-		/// <param name="expected">Expected result of the attacked body part, if the attack is a miss this should be null.</param>
+		/// <param name="expected">Expected result of the attacked appendage, if the attack is a miss this should be null.</param>
 		[TestCaseSource(nameof(Data))]
 		public void Defend(int seed, ICreature creature, IAttack attack, IAppendage? expected)
 		{
