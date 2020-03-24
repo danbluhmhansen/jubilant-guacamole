@@ -21,6 +21,7 @@
 
 		List<IEquipment> Equipment { get; }
 
+		IAttack Attack(AppendageType appendage);
 		IEnumerable<IAttack> Attacks();
 
 		IAppendage? Defend(IAttack attack);

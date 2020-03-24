@@ -3,6 +3,8 @@
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using EnumsNET;
+
 	using MoreLinq;
 
 	using RolePlayingGame.Shared.Combat;
@@ -38,6 +40,8 @@
 		public IEnumerable<IAppendage> Appendages { get; }
 
 		public List<IEquipment> Equipment { get; } = new List<IEquipment>();
+
+		public virtual IAttack Attack(AppendageType appendage) => this.attacks.FirstOrDefault(attack => attack.Appendages.HasAnyFlags(appendage));
 
 		public virtual IEnumerable<IAttack> Attacks() => this.attacks;
 
