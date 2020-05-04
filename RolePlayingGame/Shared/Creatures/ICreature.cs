@@ -21,6 +21,8 @@
 
 		List<IEquipment> Equipment { get; }
 
+		int AdjustTemperature(int amount);
+
 		IAttack Attack(AppendageType appendage);
 		IEnumerable<IAttack> Attacks();
 

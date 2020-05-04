@@ -31,15 +31,17 @@
 
 		public IResource Mana { get; }
 
-		public int Temperature { get; }
+		public int Temperature { get; protected set; }
 
-		public int Defence { get; }
+		public int Defence { get; protected set; }
 
 		public virtual int Size => this.Appendages.Sum(appendage => appendage.Size);
 
 		public IEnumerable<IAppendage> Appendages { get; }
 
 		public List<IEquipment> Equipment { get; } = new List<IEquipment>();
+
+		public virtual int AdjustTemperature(int amount) => this.Temperature += amount;
 
 		public virtual IAttack Attack(AppendageType appendage) => this.attacks.FirstOrDefault(attack => attack.Appendages.HasAnyFlags(appendage));
 

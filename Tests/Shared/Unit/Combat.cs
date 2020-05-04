@@ -44,5 +44,11 @@ namespace RolePlayingGame.Tests
 			// Assert
 			actual.Should().BeEquivalentTo(expected);
 		}
+
+		public void Test()
+		{
+			var human = new Human();
+			human.AdjustTemperature(100);
+		}
 	}
 }
