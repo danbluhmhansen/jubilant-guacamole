@@ -1,7 +1,7 @@
 ﻿namespace RolePlayingGame.Shared.Effects
 {
-	public interface IEffect
+	public enum EffectType
 	{
-		EffectType Type { get; }
+		DamageResistance,
 	}
 }

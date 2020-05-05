@@ -5,12 +5,4 @@
 		DamageType Type { get; }
 		int Amount { get; }
 	}
-	public enum DamageType
-	{
-		Physical,
-		Fire,
-		Cold,
-		Lightning,
-		Psychic,
-	}
 }
