@@ -4,7 +4,7 @@
 
 	public abstract class BaseAttack : IAttack
 	{
-		protected BaseAttack(string name, int attack, int damage, AppendageType appendages)
+		protected BaseAttack(string name, int attack, IDamage damage, AppendageType appendages)
 		{
 			this.Name = name;
 			this.Attack = attack;
@@ -16,7 +16,7 @@
 
 		public int Attack { get; }
 
-		public int Damage { get; }
+		public IDamage Damage { get; }
 
 		public AppendageType Appendages { get; }
 	}

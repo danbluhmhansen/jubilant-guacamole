@@ -6,7 +6,7 @@
 	{
 		string Name { get; }
 		int Attack { get; }
-		int Damage { get; }
+		IDamage Damage { get; }
 		AppendageType Appendages { get; }
 	}
 }

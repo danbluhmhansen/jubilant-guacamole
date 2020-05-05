@@ -4,7 +4,7 @@
 
 	public class StandardMeleeAttack : BaseAttack
 	{
-		public StandardMeleeAttack() : base("Melee", 1000, 1000, AppendageType.Arm)
+		public StandardMeleeAttack() : base("Melee", 1000, new StandardMeleeDamage(), AppendageType.Arm)
 		{
 		}
 	}

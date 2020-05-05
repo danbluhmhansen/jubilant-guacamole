@@ -27,7 +27,7 @@
 
 		public IAppendage Damage(IAttack attack)
 		{
-			var damageChance = RandomExtensions.Random.Next(attack.Damage);
+			var damageChance = RandomExtensions.Random.Next(attack.Damage.Amount);
 			if (damageChance < this.Toughness)
 				return this;
 
