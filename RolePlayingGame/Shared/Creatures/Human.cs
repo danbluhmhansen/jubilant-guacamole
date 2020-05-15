@@ -9,6 +9,7 @@
 	public class Human : BaseCreature
 	{
 		public Human() : base(
+			"Human",
 			new Vigour(500),
 			new Mana(500),
 			500,
@@ -23,8 +24,8 @@
 		{ }
 
 		public Human(
-			IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages,
+			string name, IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages,
 			IEnumerable<IAttack> attacks)
-			: base(vigour, mana, temperature, defence, appendages, attacks) { }
+			: base(name, vigour, mana, temperature, defence, appendages, attacks) { }
 	}
 }

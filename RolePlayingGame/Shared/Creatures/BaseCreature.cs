@@ -15,8 +15,9 @@
 
 	public abstract class BaseCreature : ICreature
 	{
-		protected BaseCreature(IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages, IEnumerable<IAttack> attacks)
+		protected BaseCreature(string name, IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages, IEnumerable<IAttack> attacks)
 		{
+			this.Name = name;
 			this.Vigour = vigour;
 			this.Mana = mana;
 			this.Temperature = temperature;
@@ -27,6 +28,8 @@
 		}
 
 		private readonly List<IAttack> attacks;
+
+		public string Name { get; protected set; }
 
 		public IResource Vigour { get; }
 
@@ -63,5 +66,7 @@
 				.Appendage
 				.Damage(attack);
 		}
+
+		public override string ToString() => this.Name;
 	}
 }

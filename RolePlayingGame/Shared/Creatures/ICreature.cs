@@ -10,6 +10,8 @@
 
 	public interface ICreature
 	{
+		string Name { get; }
+
 		IResource Vigour { get; }
 		IResource Mana { get; }
 

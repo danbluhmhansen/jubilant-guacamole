@@ -14,7 +14,7 @@ namespace Shared.Tests.Unit
 	public class Combat
 	{
 		private static readonly ICreature testHuman = new Human();
-		private static readonly IAttack testAttack = new TestAttack("Test", 1000, new StandardMeleeDamage(), AppendageType.Arm);
+		private static readonly IAttack testAttack = new TestAttack("Test attack", 1000, new StandardMeleeDamage(), AppendageType.Arm);
 
 		/// <summary><see cref="Defend(int, ICreature, IAttack, IAppendage?)"/>.</summary>
 		public static IEnumerable<TestCaseData> Data => new[]

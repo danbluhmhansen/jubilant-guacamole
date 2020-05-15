@@ -36,5 +36,7 @@
 
 			return this;
 		}
+
+		public override string ToString() => this.Name;
 	}
 }

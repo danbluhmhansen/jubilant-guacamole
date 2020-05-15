@@ -24,7 +24,8 @@
 			{
 				if (jsonSerializerOptions == default)
 					jsonSerializerOptions = new JsonSerializerOptions();
-				value = JsonSerializer.Deserialize<T>(jsonElement.GetRawText(), jsonSerializerOptions);
+
+				value = JsonSerializer.Deserialize<T>(jsonElement.GetRawText(), jsonSerializerOptions)!;
 				return true;
 			}
 

@@ -19,5 +19,7 @@
 		public IDamage Damage { get; }
 
 		public AppendageType Appendages { get; }
+
+		public override string ToString() => this.Name;
 	}
 }
