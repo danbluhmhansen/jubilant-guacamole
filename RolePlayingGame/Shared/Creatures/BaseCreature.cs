@@ -8,7 +8,6 @@
 	using MoreLinq;
 
 	using RolePlayingGame.Shared.Combat;
-	using RolePlayingGame.Shared.Effects;
 	using RolePlayingGame.Shared.Equipment;
 	using RolePlayingGame.Shared.Health;
 	using RolePlayingGame.Shared.Resources;
@@ -44,8 +43,6 @@
 		public IEnumerable<IAppendage> Appendages { get; }
 
 		public List<IEquipment> Equipment { get; } = new List<IEquipment>();
-
-		public List<IEffect> Effects { get; } = new List<IEffect>();
 
 		public virtual int AdjustTemperature(int amount) => this.Temperature += amount;
 

@@ -3,7 +3,6 @@
 	using System.Collections.Generic;
 
 	using RolePlayingGame.Shared.Combat;
-	using RolePlayingGame.Shared.Effects;
 	using RolePlayingGame.Shared.Equipment;
 	using RolePlayingGame.Shared.Health;
 	using RolePlayingGame.Shared.Resources;
@@ -23,7 +22,6 @@
 		int Size { get; }
 
 		List<IEquipment> Equipment { get; }
-		List<IEffect> Effects { get; }
 
 		int AdjustTemperature(int amount);
 
