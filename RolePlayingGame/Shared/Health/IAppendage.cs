@@ -3,6 +3,7 @@
 	using System.Collections.Generic;
 
 	using RolePlayingGame.Shared.Combat;
+	using RolePlayingGame.Shared.Effects;
 
 	public interface IAppendage
 	{
@@ -13,7 +14,8 @@
 		int Toughness { get; }
 
 		List<IInjury> Injuries { get; }
+		List<IEffect> Effects { get; }
 
-		IAppendage Damage(IAttack attack);
+		IAppendage Damage(IAttack attack, IEnumerable<IEffect>? effects = default);
 	}
 }

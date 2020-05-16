@@ -8,6 +8,7 @@
 	using MoreLinq;
 
 	using RolePlayingGame.Shared.Combat;
+	using RolePlayingGame.Shared.Effects;
 	using RolePlayingGame.Shared.Equipment;
 	using RolePlayingGame.Shared.Health;
 	using RolePlayingGame.Shared.Resources;
@@ -16,7 +17,7 @@
 	{
 		protected BaseCreature(
 			string name, IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages,
-			IEnumerable<IAttack> attacks)
+			IEnumerable<IAttack> attacks, IEnumerable<IEquipment>? equipment = default, IEnumerable<IEffect>? effects = default)
 		{
 			this.Name = name;
 			this.Vigour = vigour;
@@ -26,6 +27,9 @@
 			this.Appendages = appendages;
 
 			this.attacks = attacks.ToList();
+
+			this.Equipment = equipment?.ToList() ?? new List<IEquipment>();
+			this.Effects = effects?.ToList() ?? new List<IEffect>();
 		}
 
 		private readonly List<IAttack> attacks;
@@ -44,7 +48,9 @@
 
 		public IEnumerable<IAppendage> Appendages { get; }
 
-		public List<IEquipment> Equipment { get; } = new List<IEquipment>();
+		public List<IEquipment> Equipment { get; }
+
+		public List<IEffect> Effects { get; }
 
 		public virtual int AdjustTemperature(int amount) => this.Temperature += amount;
 
@@ -52,9 +58,19 @@
 
 		public virtual IEnumerable<IAttack> Attacks() => this.attacks;
 
-		public virtual IAppendage? Defend(IAttack attack)
+		public virtual IAppendage? Defend(IAttack attack, IEnumerable<IEffect>? effects = default)
 		{
-			if (this.Defence.Roll(attack.Attack))
+			if (effects == default)
+				effects = Enumerable.Empty<IEffect>();
+
+			var result = this.Effects
+				.Concat(effects.ExceptBy(this.Effects, effect => effect.Id))
+				.Where(effect => effect.EffectEvent == EffectEvent.OnDefend)
+				.Select(effect => (Success: effect.Affect(attack).TryConvert<int>(out var res), Result: res))
+				.Where(x => x.Success)
+				.Sum(x => x.Result);
+
+			if (this.Defence.Roll(attack.Attack + result))
 				return default;
 
 			var total = 0;
@@ -65,7 +81,7 @@
 				.First(appendageWithTargetNumber => appendageWithTargetNumber.TargetNumber.Roll(this.Size))
 				.Appendage;
 
-			return targetAppendage.Damage(attack);
+			return targetAppendage.Damage(attack, this.Effects);
 		}
 
 		public override string ToString() => this.Name;

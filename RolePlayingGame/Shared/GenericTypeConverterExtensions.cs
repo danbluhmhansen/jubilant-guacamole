@@ -6,8 +6,14 @@
 
 	public static class GenericTypeConverterExtensions
 	{
-		public static bool TryConvert<T>(this object obj, out T value, JsonSerializerOptions jsonSerializerOptions = default!)
+		public static bool TryConvert<T>(this object? obj, out T value, JsonSerializerOptions jsonSerializerOptions = default!)
 		{
+			if (obj is null)
+			{
+				value = default!;
+				return false;
+			}
+
 			if (typeof(IConvertible).IsAssignableFrom(obj.GetType()))
 			{
 				value = (T)Convert.ChangeType(obj, typeof(T));
