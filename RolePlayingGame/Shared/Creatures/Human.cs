@@ -9,11 +9,7 @@
 	public class Human : BaseCreature
 	{
 		public Human() : base(
-			"Human",
-			new Vigour(500),
-			new Mana(500),
-			500,
-			500,
+			"Human", new Vigour(500), new Mana(500), 500, 500,
 			new Appendage("Head", AppendageType.Head, 60, 500).Yield(
 				new Appendage("Body", AppendageType.Torso, 160, 500),
 				new Appendage("Left arm", AppendageType.Arm, 80, 500),
@@ -25,7 +21,8 @@
 
 		public Human(
 			string name, IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages,
-			IEnumerable<IAttack> attacks)
-			: base(name, vigour, mana, temperature, defence, appendages, attacks) { }
+			IEnumerable<IAttack> attacks) : base(name, vigour, mana, temperature, defence, appendages, attacks)
+		{
+		}
 	}
 }

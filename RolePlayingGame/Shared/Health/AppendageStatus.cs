@@ -1,6 +1,6 @@
 ﻿namespace RolePlayingGame.Shared.Health
 {
-	public enum BodyPartStatus
+	public enum AppendageStatus
 	{
 		Normal = 0,
 		Pure = -1,

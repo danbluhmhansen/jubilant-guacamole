@@ -7,7 +7,7 @@
 
 	public abstract class BaseAppendage : IAppendage
 	{
-		protected BaseAppendage(string name, AppendageType type, int size, int toughness, BodyPartStatus status = default, IEnumerable<IInjury>? injuries = default)
+		protected BaseAppendage(string name, AppendageType type, int size, int toughness, AppendageStatus status = default, IEnumerable<IInjury>? injuries = default)
 		{
 			this.Name = name;
 			this.Type = type;
@@ -19,7 +19,7 @@
 
 		public string Name { get; }
 		public AppendageType Type { get; }
-		public virtual BodyPartStatus Status { get; protected set; }
+		public AppendageStatus Status { get; protected set; }
 		public int Size { get; }
 		public int Toughness { get; }
 
@@ -31,7 +31,7 @@
 			if (damageChance < this.Toughness)
 				return this;
 
-			if (this.Status != BodyPartStatus.Destroyed)
+			if (this.Status != AppendageStatus.Destroyed)
 				this.Status++;
 
 			return this;

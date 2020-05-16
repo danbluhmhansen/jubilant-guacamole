@@ -22,9 +22,9 @@ namespace Shared.Tests.Unit
 			// No hit.
 			new TestCaseData(1337, testHuman, testAttack, default(IAppendage)),
 			// Hit 'Left arm' appendage, but doesn't damage.
-			new TestCaseData(9663, testHuman, testAttack, new Appendage("Left arm", AppendageType.Arm, 80, 500, BodyPartStatus.Normal)),
+			new TestCaseData(9663, testHuman, testAttack, new Appendage("Left arm", AppendageType.Arm, 80, 500, AppendageStatus.Normal)),
 			// Hit and damage 'Head' appendage.
-			new TestCaseData(6541, testHuman, testAttack, new Appendage("Head", AppendageType.Head, 60, 500, BodyPartStatus.Impaired)),
+			new TestCaseData(6541, testHuman, testAttack, new Appendage("Head", AppendageType.Head, 60, 500, AppendageStatus.Impaired)),
 		};
 
 		/// <summary>Testing <see cref="ICreature.Defend(IAttack)"/></summary>
@@ -43,12 +43,6 @@ namespace Shared.Tests.Unit
 
 			// Assert
 			actual.Should().BeEquivalentTo(expected);
-		}
-
-		public void Test()
-		{
-			var human = new Human();
-			human.AdjustTemperature(100);
 		}
 	}
 }

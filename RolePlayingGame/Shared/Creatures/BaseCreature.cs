@@ -14,7 +14,9 @@
 
 	public abstract class BaseCreature : ICreature
 	{
-		protected BaseCreature(string name, IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages, IEnumerable<IAttack> attacks)
+		protected BaseCreature(
+			string name, IResource vigour, IResource mana, int temperature, int defence, IEnumerable<IAppendage> appendages,
+			IEnumerable<IAttack> attacks)
 		{
 			this.Name = name;
 			this.Vigour = vigour;
@@ -56,12 +58,14 @@
 				return default;
 
 			var total = 0;
-			return this.Appendages
+
+			var targetAppendage = this.Appendages
 				.OrderBy(appendage => appendage.Size)
 				.Select(appendage => (Appendage: appendage, TargetNumber: total += appendage.Size))
 				.First(appendageWithTargetNumber => appendageWithTargetNumber.TargetNumber.Roll(this.Size))
-				.Appendage
-				.Damage(attack);
+				.Appendage;
+
+			return targetAppendage.Damage(attack);
 		}
 
 		public override string ToString() => this.Name;

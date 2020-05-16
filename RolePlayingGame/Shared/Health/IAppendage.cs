@@ -8,7 +8,7 @@
 	{
 		string Name { get; }
 		AppendageType Type { get; }
-		BodyPartStatus Status { get; }
+		AppendageStatus Status { get; }
 		int Size { get; }
 		int Toughness { get; }
 
